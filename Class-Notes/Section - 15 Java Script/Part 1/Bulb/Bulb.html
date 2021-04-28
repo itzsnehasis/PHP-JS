@@ -1,0 +1,33 @@
+<html>
+<head>
+
+	<script type="text/javascript">
+
+		var BulbState = "off"
+		function mySwitch() {
+			
+			var bulb     = document.getElementById('bulb');
+			var myswitch = document.getElementById('myswitch');
+
+			if(BulbState == "off") {
+				bulb.src = 'bulb_on.jpg';
+				myswitch.value = "Switch Off";
+				BulbState = "on"
+			}
+			else {
+				bulb.src = 'bulb_off.jpg';
+				myswitch.value = "Switch On";		
+				BulbState = "off"		
+			}
+		}
+	</script>
+</head>
+<body>
+
+<center>
+	<IMG SRC = "bulb_off.jpg" ID = "bulb">
+	<HR>
+	<INPUT TYPE = SUBMIT ONCLICK = "mySwitch()" VALUE = "Switch On" ID = "myswitch" STYLE = " color: red; padding: 10px;">
+</center>
+</body>
+</html>

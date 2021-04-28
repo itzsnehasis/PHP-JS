@@ -1,0 +1,51 @@
+1) web.php
+
+use App\Http\Controllers\ProductController;
+
+
+Route::get('/product', 		    [ProductController::class, 'product']);
+Route::get('/details/{id}',		[ProductController::class, 'details']);
+
+
+
+2) ProductController.php
+
+public function product() {
+        
+       $rows = DB::select("SELECT * FROM `products` ORDER BY `id` ASC LIMIT 0,3");
+      // $user = "Apple";
+        return view("product", ["rows"=>$rows] );
+    }
+
+ 3) product.blade.php
+
+  @foreach($rows as $row)
+               <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+                  <div class="sport_product">
+                     <figure><a href = './details/{{$row->id}}'><img src="{{$row->image}}" alt="img"/></a></figure>
+                    <h3> Rs.<strong class="price_text">{{$row->price}}</strong></h3>
+                     <h4><a href = './details/{{$row->id}}'>{{$row->name}}</a></h4>
+                  </div>
+               </div>
+   @endforeach
+
+
+   4) ProductController.php
+
+    public function details( $id) {
+        //print $id;
+
+       // print "hello";
+        $rows = DB::select("SELECT * FROM `products` WHERE `id` = ?",[$id]);
+        return view('details',['rows'=>$rows]);
+    }
+
+   5) details.blade.php
+
+    <h1 class=""  > {{$rows[0]->name}}</h1>  
+                     <h5  class="">{{$rows[0]->details}}</h5>
+                     <h5  style = "color:black">Price: Rs.{{$rows[0]->price}}</h5>
+
+                    
+
+    

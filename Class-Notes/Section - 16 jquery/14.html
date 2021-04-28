@@ -1,0 +1,48 @@
+<!-- 
+HTML Manipulation:
+jQuery contains powerful methods (functions) for changing and manipulating HTML elements and attributes.
+
+
+$("p").html("W3Schools");
+
+$(selector).append(content)
+The append() method appends content to the inside of matching HTML elements.
+
+$(selector).prepend(content)
+The prepend() method "prepends" content to the inside of  matching HTML elements.
+
+$(selector).after(content)
+The after() method inserts HTML content after all matching elements.
+
+$(selector).before(content)
+The before() method inserts HTML content before all matching elements.
+
+$("p").after(" W3Schools.");
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+
+  $(".ex .hide").click(function(){
+	$(this).parents(".ex").html("<H1>Hello</H1>");
+  });
+  		//html,  after,  prepend
+});
+</script>
+</head>
+<body>
+
+<h3>Island Trading</h3>
+<div class="ex" STYLE = "border:2-px solid red;width:250px;">
+<button class="hide">Hide me</button>
+<p>Contact: Helen Bennett<br /> 
+Garden House Crowther Way<br />
+London</p>
+</div>
+<HR><HR><HR>
+</body>
+</html>
+

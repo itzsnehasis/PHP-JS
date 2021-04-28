@@ -1,0 +1,39 @@
+<html>
+<head>
+
+	<script type="text/javascript">
+		function CheckPrime() {
+			
+			var n = document.f1.num.value;
+
+			var flag = true;
+			for(var i=2; i<=n/2; i++) {
+				if(n%i==0) {
+					flag = false;
+					break;
+				}
+			}
+
+			if(flag==true)
+				alert('The Number '+n+' is a Prime')
+			else
+				alert('The Number '+n+' is NOT a Prime')
+			return false;
+		}
+	</script>
+
+</head>
+<body>
+
+	<center>
+	<H1>Prime Numbers</H1>
+
+	<FORM NAME = f1 ACTION = "KuchBhi" ONSUBMIT = "return CheckPrime()">
+		Enter a Number : <INPUT TYPE = "NUMBER" NAME = "num">
+		<BR><INPUT TYPE = "SUBMIT" VALUE = "Check">
+
+	</FORM>
+
+	</center>
+</body>
+</html>

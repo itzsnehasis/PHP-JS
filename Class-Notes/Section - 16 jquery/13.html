@@ -1,0 +1,48 @@
+A callback function is executed after the current animation is 100% finished.
+<!--
+jQuery Callback Functions
+
+JavaScript statements are executed line by line. However, with animations, the next line of code can be run even though the animation is not finished. This can create errors.
+
+To prevent this, you can create a callback function.
+
+A callback function is executed after the current animation (effect) is finished.
+
+jQuery Callback Example
+
+Typical syntax: $(selector).hide(speed,callback)
+
+The callback parameter is a function to be executed after the hide effect is completed:
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+
+
+
+  $(".ex .hide").click(function(){
+  
+	$(this).parents(".ex").hide("slow", function() {alert('Hello World');} );
+  });
+
+});
+</script>
+
+</head>
+<body>
+
+<h3>Island Trading</h3>
+<div class="ex" STYLE = "border:2-px solid red;width:250px;">
+<button class="hide">Hide me</button>
+<p>Contact: Helen Bennett<br /> 
+Garden House Crowther Way<br />
+London</p>
+</div>
+
+
+</body>
+</html>
+

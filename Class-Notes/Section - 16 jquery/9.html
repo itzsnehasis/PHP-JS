@@ -1,0 +1,38 @@
+<!-- 
+jQuery Effects
+
+Examples
+
+jQuery hide() : Demonstrates a simple jQuery hide() method.
+Another hide() demonstration. How to hide parts of text.
+jQuery slideToggle() : Demonstrates a simple slide panel effect.
+jQuery fadeTo() : Demonstrates a simple jQuery fadeTo() method.
+jQuery animate() : Demonstrates a simple jQuery animate() method.
+-->
+
+<script type="text/javascript" src="./jquery.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  $(".ex .hide").click(function(){
+    $(this).parents(".ex").hide(5000);
+  });
+});
+</script>
+<style type="text/css"> 
+div.ex
+{
+	background-color:#e5eecc; WIDTH: 400px;
+	padding:7px;
+	border:solid 1px #c3c3c3;
+}
+</style>
+
+<h3>Island Trading</h3>
+<div class="ex">
+<button class="hide">Hide me</button>
+<p>Contact: Helen Bennett</p>
+</div>
+</body>
+</html>
+

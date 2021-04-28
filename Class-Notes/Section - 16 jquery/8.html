@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!--
+jQuery Events
+
+Here are some examples of event methods in jQuery: 
+
+Event Method	Description
+
+$(document).ready(function)  
+	Binds a function to the ready event of a document (when the document is finished loading)
+
+$(selector).click(function)	
+Triggers, or binds a function to the click event of selected elements
+
+$(selector).dblclick(function)	
+Triggers, or binds a function to the double click event of selected elements
+
+$(selector).focus(function)	
+Triggers, or binds a function to the focus event of selected elements
+
+$(selector).mouseover(function)
+	Triggers, or binds a function to the mouseover event of selected elements 
+-->
+<html>
+<head>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  $("button").dblclick(function(){
+    $("p").hide();
+  });
+});
+</script>
+</head>
+
+<body>
+<h2>This is a heading</h2>
+<p>This is a paragraph.</p>
+<p>This is another paragraph.</p>
+<button>Click me</button>
+</body>
+</html>

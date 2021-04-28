@@ -1,0 +1,23 @@
+<HTML>
+	<HEAD>
+	<script type="text/javascript">
+	
+	var xPos = 0;
+	function mover() {
+
+		var box = document.getElementById('MyDIV');
+		box.style.top = xPos + "px";
+		xPos += 5;
+
+		setTimeout("mover()", 100)
+	}	
+
+	</script>
+	</HEAD>
+	<BODY ONLOAD = "mover()">
+
+		<H1>A DIV Animation</H1>	
+		<DIV ID = "MyDIV" STYLE = "border: 2px solid red; width: 100px; height: 100px; text-align: center; background: yellow; position: absolute; top: 0px; left: 0px;"><BR><BR>Hello</DIV>
+
+	</BODY>
+</HTML>

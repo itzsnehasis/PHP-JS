@@ -1,0 +1,17 @@
+				include "./lib/connection.php";
+				$sql = "SELECT * FROM `category` WHERE `parent_id` = '0';";
+				$res = $db->query($sql);
+				while($row = $res->fetch_array()){
+					print '
+						<li><a href="product.html">'.$row['cname'].'</a></li>
+					';
+					$sqlu = "SELECT * FROM `category` WHERE `parent_id` = '$row[cid]'";
+					$resu = $db->query($sqlu);
+					while($rowu = $resu->fetch_array()){
+						
+					}
+
+				}
+
+        					<li><a href="product.html"> &nbsp; &nbsp; &nbsp; &nbsp; &raquo; With Egg</a></li>
+					<li><a href="product.html"> &nbsp; &nbsp; &nbsp; &nbsp; &raquo; Egg Free</a></li>

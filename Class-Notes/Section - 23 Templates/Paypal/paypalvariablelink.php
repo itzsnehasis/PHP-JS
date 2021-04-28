@@ -1,0 +1,1 @@
+https://developer.paypal.com/docs/paypal-payments-standard/integration-guide/formbasics/

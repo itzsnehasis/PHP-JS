@@ -1,0 +1,11 @@
+1.
+SELECT `salary` FROM `employee`,`designation` WHERE `employee`.`did` = `designation`.`id` AND `title` = 'md'
+
+2. 
+SELECT `address` FROM `employee`,`office` WHERE `employee`.`oid` = `office`.`id` AND `name` = 'john'
+
+3.
+SELECT `address` FROM `employee`,`designation`,`office` WHERE `employee`.`did` = `designation`.`id` AND `employee`.`oid` = `office`.`id` AND `title` = 'hr_manager'
+
+4.
+SELECT `name` FROM `employee`,`office` WHERE `employee`.`oid` = `office`.`id` AND `address` = 'saltlake'

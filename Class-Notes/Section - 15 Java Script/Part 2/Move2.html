@@ -1,0 +1,29 @@
+<HTML>
+	<HEAD>
+	<script type="text/javascript">
+	
+	//alert(screen.width);
+	//alert(window.screen.width);
+	//alert(window.innerWidth);
+
+	var xPos = 0;
+	function mover() {
+
+		var box = document.getElementById('MyDIV');
+		box.style.top = xPos + "px";
+		xPos += 10;
+
+		if(xPos>window.innerHeight)
+			xPos = -100;
+		setTimeout("mover()", 30)
+	}	
+
+	</script>
+	</HEAD>
+	<BODY ONLOAD = "mover()">
+
+		<H1>A DIV Animation</H1>	
+		<DIV ID = "MyDIV" STYLE = "border: 2px solid red; width: 100px; height: 100px; text-align: center; background: yellow; position: absolute; top: 0px; left: 0px;"><BR><BR>Hello</DIV>
+
+	</BODY>
+</HTML>

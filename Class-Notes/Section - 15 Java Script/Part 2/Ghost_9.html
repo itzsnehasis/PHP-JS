@@ -1,0 +1,118 @@
+<HTML>
+	<HEAD>
+	<script type="text/javascript">
+
+	var xPos = 0;
+	var yPos = 0;
+	var xDirection = 1;
+	var yDirection = 1;
+	var xSpeed = 10;
+	var ySpeed = 10;
+	var point  = 0;
+	var isAlive = true;
+	var bgMusic = true;
+
+	function mover() {
+
+
+
+		var box = document.getElementById('MyDIV');
+		box.style.left = xPos + "px";
+		box.style.top  = yPos + "px";
+
+		xPos += xSpeed*xDirection;
+
+		yPos += ySpeed*yDirection;
+
+		if(xPos>window.innerWidth-100) {
+			xDirection = -1;
+			reSpeed();
+		}
+
+		if(xPos<0) {
+			xDirection = 1;
+			reSpeed();
+		}
+
+		if(yPos>window.innerHeight-100) {
+			yDirection = -1;
+			reSpeed();
+		}
+
+		if(yPos<0) {
+			yDirection = 1;
+			reSpeed();
+		}
+
+		//Set Score
+		if(isAlive==false && yPos > window.innerHeight*2) {
+			isAlive = true;
+			xPos = -100;
+			yPos = -100;
+			reSpeed();
+		}
+			
+		setTimeout("mover()", 30)
+		
+	}	
+
+	function reSpeed() {
+		xSpeed = 2+ Math.random()*5;
+		ySpeed = 2+ Math.random()*5;
+
+	}
+
+	document.addEventListener('click', Tap, true);
+	
+	function Tap(e){
+	      cursorX = e.pageX;
+	      cursorY = e.pageY;
+	      //		var score = document.getElementById('score');
+		  if(bgMusic) {
+			startBgMusic();
+			bgMusic = false;
+			}
+
+	      if( cursorX>xPos && cursorX<xPos+100 && cursorY>yPos && cursorY<yPos+100) {
+	      	point = point+10;	
+	      	isAlive = false;
+	      	yDirection = 1;
+	      	xSpeed = 0;
+	      	ySpeed = 50;
+
+	      	var cryAudio = new Audio('pics/cry.mp3');
+	      	if(Math.random()<0.5)
+	      		cryAudio = new Audio('pics/cry2.mp3');
+			cryAudio.play();
+	      } 
+	      else {
+
+	      	point = point-10;
+
+	      	var laughAudio = new Audio('pics/laugh.mp3');
+	      	if(Math.random()<0.5)
+	      		laughAudio = new Audio('pics/laugh2.mp3');
+			laughAudio.play();
+
+	      }
+	      score.innerHTML = "Value="+point;
+	}
+	
+	function startBgMusic() {
+		var bgAudio = new Audio('pics/bg.mp3');
+		bgAudio.play();
+	}
+
+	</script>
+
+	</HEAD>
+	<BODY ONLOAD = "mover()" style = "margin-left: 0px; margin-top: 0px;">
+		<DIV STYLE = "background: url('./pics/bg.jpg'); height: 1000px;">
+
+		<DIV ID = "MyDIV" STYLE = "border: 0px solid red; width: 100px; height: 100px; position: absolute; top: 0px; left: 0px;"><IMG SRC = "pics/ghost2.gif" HEIGHT = 100></DIV>
+
+		</DIV>
+		<DIV ID = score STYLE = "position: absolute; top: 0px; left: 0px;">Score = 0		</DIV>
+
+	</BODY>
+</HTML>

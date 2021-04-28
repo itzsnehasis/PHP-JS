@@ -1,0 +1,140 @@
+1) details.blade.php
+
+<div class="contact_us_2 layout_padding paddind_bottom_0 ">
+         <div class="container" >
+            <div class="row">
+               <div class="col-md-6">
+                  <div class="soc_text"><img src = "{{$rows[0]->image}}"></div>
+               </div>
+               <div class="col-md-6">
+                  <div class="email_btn">
+
+                  <h1 class=""  > {{$rows[0]->name}}</h1>  
+                     <h5  class="">{{$rows[0]->details}}</h5>
+                     <h5  style = "color:black">Price: Rs.{{$rows[0]->price}}</h5>
+
+                     <form action="./add" method = "post">
+                        @csrf
+                        <div class="form-group">
+                           <input type="hidden" class="form-control form-control-sm" p name="pid" value = "{{$rows[0]->id}}">
+                        </div>
+                        <div class="form-group">
+                           <input type="number" class="form-control form-control-sm" placeholder="Quantity" name="quantity" value = "1" style = "color:black;">
+                        </div>
+                        
+                       
+                         <div class="submit_btn">
+                            <button type="submit" class="btn btn-primary" style="background: #081b30;">Add To Cart</button>
+                         </div>
+                      </form>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+
+
+
+2) web.php
+
+use App\Http\Controllers\CartController;
+
+Route::post('/add',           [CartController::class, 'add']);
+Route::get('/cart',           [CartController::class, 'add']);
+
+
+
+
+3) CartController.php
+use Illuminate\Support\Facades\DB;
+
+  class CartController extends Controller
+{
+
+    public function add(Request $req) {
+        $pid      = $req->pid;
+        $quantity = $req->quantity;
+
+       if($req->session()->has('mycart'))
+             $cart = $req->session()->get('mycart');
+          else
+             $cart = [];
+
+        if($quantity>0) {
+            $cart[$pid] = $quantity;
+        }
+        $req->session()->put('mycart', $cart);
+        // End Add 2 Cart
+
+
+        //Fetch the Cart Items
+        $product_details = [];
+        foreach ($cart as $pid => $quantity) {
+            $rows = DB::select("SELECT * FROM `products` WHERE `id` = ?",[$pid]);
+            $product_details[$pid] = $rows[0];
+        }
+        
+        //Show Cart
+        return view("cart", ["cart"=>$cart, "product_details"=>$product_details] );
+        
+    }
+}
+
+ 3) Views/cart.blade.php
+
+
+  <div class="clothes_main section ">
+          <div class="container">
+            <div class="row">
+              @if (count($cart) == 0)
+
+                  <div style = "color:white;padding-left:20%;font-size: 4em">Oops! Your cart is Empty</div>
+
+              @else
+              <table class = "table">
+                <tr>
+                  <th>ID</th>
+                  <th>Image</th>
+                  <th>Name</th>
+                  <th>Quantity</th>
+                  <th>Price</th>
+                  <th>Subtotal</th>
+                  
+                </tr>
+             @php
+                $total = 0;
+
+            @endphp
+
+           
+
+              @foreach($cart as $pid=>$quantity)
+
+                @php
+                   $subtotal = $product_details[$pid]->price * $quantity;
+                   $total = $total + $subtotal ;
+                @endphp
+
+
+                 <tr>
+                   <td>{{ $pid }}</td>
+                   <td><img src = "{{ $product_details[$pid]->image }}" width = "100"></td>
+                   <td>{{ $product_details[$pid]->name }}</td>
+                   <td>{{ $quantity }}</td>
+                   <td>{{ $product_details[$pid]->price }}</td>
+                   <td>{{ $subtotal }}</td>
+                   
+                 </tr>
+
+
+                 @endforeach
+
+               <tr>
+                 
+                 <th colspan = "5">Total</th>
+                 
+                 <td>{{ $total }}</td>
+               </tr> 
+               </table>
+           
+              @endif

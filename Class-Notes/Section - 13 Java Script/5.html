@@ -1,0 +1,24 @@
+<html>
+<head>
+
+	<script type="text/javascript">
+		function test(msg) {
+			alert('The message is: '+msg)
+		}
+	</script>
+
+</head>
+<body onload = "test('I am OnLoad Event!!!')">
+
+	<HR>
+	<A HREF = "#" ONCLICK = "test('I am ONCLICK Event!!!')">Click Me</A>
+	
+	<HR>
+	<IMG SRC = "header.png" WIDTH = "200" ONMOUSEOVER = "test('Mouse is Over the Pic')" ONMOUSEOUT = "test('Mouse is Outside the Pic')">
+
+
+	<HR>
+	<INPUT TYPE = TEXT ONFOCUS = "test('Mouse is inside TextBox')" ONBLUR = "test('Mouse is outside TextBox')">
+
+</body>
+</html>

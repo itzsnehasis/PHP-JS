@@ -1,0 +1,12 @@
+body{
+    background-color: white;
+    transition      : 4s; 
+}
+
+.circle{
+    height          : 100px;
+    width           : 100px;
+    border-radius   : 100%;
+    background-color: black;
+    transition      : 0.5s;
+}

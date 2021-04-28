@@ -1,0 +1,34 @@
+1) web.php
+
+use App\Http\Controllers\SessionController;
+Route::get('/session/set',     [SessionController::class,   'storeSessionData']);
+Route::get('/session/get',     [SessionController::class,   'accessSessionData']);
+Route::get('/session/remove',  [SessionController::class,   'deleteSessionData']);
+
+2) SessionController.php
+
+<?php
+namespace App\Http\Controllers;
+hth
+use Illuminate\Http\Request;
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
+
+class SessionController extends Controller
+{
+	public function accessSessionData(Request $request) {
+		if($request->session()->has('my_name'))
+			print $request->session()->get('my_name');
+		else
+			print 'No Data in the session';
+	}
+	public function storeSessionData(Request $request) {
+		$request->session()->put('my_name', 'LARVEL');
+		print 'Data added in the session';
+	}
+	public function deleteSessionData(Request $request) {
+
+		$request->session()->forget('my_name');
+		print 'Data removed';
+	}
+}

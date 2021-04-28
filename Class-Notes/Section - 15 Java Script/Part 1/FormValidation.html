@@ -1,0 +1,80 @@
+<html>
+<head>
+	<script type="text/javascript">
+
+	function verify() {
+
+		var name = document.f1.name.value;
+		if(name=='') {
+			alert('Please Enter You Name!');
+			document.f1.name.focus();
+			return false;
+		}
+
+		var age = document.f1.age.value;
+		if(age=='') {
+			alert('Please Enter You Age!');
+			document.f1.age.focus();
+			return false;
+		}
+		if( isNaN(age) ) {
+			alert('Please Enter You Age in NUMBERS ONLY!');
+			document.f1.age.focus();
+			return false;
+		}
+		if( age<18) {
+			alert('Baad me aana!');
+			document.f1.age.focus();
+			return false;
+		}
+
+		//Email Part
+		var em = document.f1.email.value;
+		if(em=='') {
+			alert('Please Enter You Email!');
+			document.f1.email.focus();
+			return false;
+		}
+
+		//Search for @
+		var pos1 = em.indexOf('@',0); //Find @ position in Email starting from index 0. If not found, it returns false or -1, otherwise index
+		var pos2 = em.indexOf('.', pos1+1); //Find a dot after @
+		
+		if(pos1<1 || pos2 <1) {
+			alert('Please Enter You Email Correctly!');
+			document.f1.email.focus();
+			return false;
+		}
+
+	return true;
+	}	
+	</script>
+	
+</head>
+
+<body>
+<center>
+	<h1>JS Form Validation</h1>
+	<form action="KuchBhi" method = "POST" NAME = "f1" ONSUBMIT = "return verify()">
+	<table>
+		<tr>
+			<td>Name</td>
+			<td><input type="text" name="name"></td>
+		</tr>
+		<tr>
+			<td>Age</td>
+			<td><input type="text" name="age"></td>
+		</tr>
+		<tr>
+			<td>Email</td>
+			<td><input type="text" name="email"></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><input type="submit" value = "Register"></td>
+		</tr>
+	</table>
+
+</center>
+</body>
+</html>

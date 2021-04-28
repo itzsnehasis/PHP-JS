@@ -1,0 +1,41 @@
+<HTML>
+	<HEAD>
+	<script type="text/javascript">
+
+	var xPos = 0;
+	var yPos = 0;
+	var xDirection = 1;
+	var yDirection = 1;
+
+	function mover() {
+
+		var box = document.getElementById('MyDIV');
+		box.style.left = xPos + "px";
+		box.style.top  = yPos + "px";
+
+		xPos += 10*xDirection;
+		yPos += 10*yDirection;
+
+		if(xPos>window.innerWidth-100)
+			xDirection = -1;
+
+		if(xPos<0)
+			xDirection = 1;
+
+		if(yPos>window.innerHeight-100)
+			yDirection = -1;		
+		if(yPos<0)
+			yDirection = 1;
+
+		setTimeout("mover()", 30)
+	}	
+
+	</script>
+	</HEAD>
+	<BODY ONLOAD = "mover()">
+
+		<H1>A DIV Animation</H1>	
+		<DIV ID = "MyDIV" STYLE = "border: 2px solid red; width: 100px; height: 100px; text-align: center; background: yellow; position: absolute; top: 0px; left: 0px;"><BR><BR>Hello</DIV>
+
+	</BODY>
+</HTML>

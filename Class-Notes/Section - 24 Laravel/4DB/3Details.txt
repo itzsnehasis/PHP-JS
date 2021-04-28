@@ -1,0 +1,74 @@
+1) web.php
+
+use App\Http\Controllers\DemoController;
+
+Route::get('/details/{id}',   [DemoController::class, 'details']);
+
+
+2) DemoController.php
+
+class DemoController extends Controller
+{
+	public function product() {
+        
+       $rows = DB::select("SELECT * FROM `products` ORDER BY `id` ASC LIMIT 0,3");
+      
+        return view("product", ["rows"=>$rows] );
+    }
+
+   
+    public function details(Request $req , $id) {
+        //print $id;
+
+       // print "hello";
+        $rows = DB::select("SELECT * FROM `products` WHERE `id` = ?",[$id]);
+        return view('details',['rows'=>$rows]);
+    }
+
+  }
+
+ 3) Views/product.blade.php
+
+ 	@foreach($rows as $row)
+               <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+                  <div class="sport_product">
+                     <figure><a href = './details/{{$row->id}}'><img src="{{$row->image}}" alt="img"/></a></figure>
+                    <h3> Rs.<strong class="price_text">{{$row->price}}</strong></h3>
+                     <h4><a href = './details/{{$row->id}}'>{{$row->name}}</a></h4>
+                  </div>
+               </div>
+  @endforeach
+
+
+  <div class="contact_us_2 layout_padding paddind_bottom_0 ">
+         <div class="container" >
+            <div class="row">
+               <div class="col-md-6">
+                  <div class="soc_text"><img src = "{{$rows[0]->image}}"></div>
+               </div>
+               <div class="col-md-6">
+                  <div class="email_btn">
+
+                  <h1 class=""  > {{$rows[0]->name}}</h1>  
+                     <h5  class="">{{$rows[0]->details}}</h5>
+                     <h5  style = "color:black">Price: Rs.{{$rows[0]->price}}</h5>
+
+                     <form action="" method = "post">
+                       
+                        <div class="form-group">
+                           
+                        </div>
+                        <div class="form-group">
+                           <input type="number" class="form-control form-control-sm" placeholder="Quantity" name="quantity" value = "1" style = "color:black;">
+                        </div>
+                        
+                       
+                         <div class="submit_btn">
+                            <button type="submit" class="btn btn-primary" style="background: #081b30;">Add To Cart</button>
+                         </div>
+                      </form>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>

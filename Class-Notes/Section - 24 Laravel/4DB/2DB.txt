@@ -1,0 +1,31 @@
+1) web.php
+
+use App\Http\Controllers\DemoController;
+
+Route::get('/product', 		    [DemoController::class, 'product']);
+
+
+2) DemoController.php
+
+class DemoController extends Controller
+{
+	public function product() {
+        
+       $rows = DB::select("SELECT * FROM `products` ORDER BY `id` ASC LIMIT 0,3");
+      
+        return view("product", ["rows"=>$rows] );
+    }
+
+  }
+
+ 3) Views/product.blade.php
+
+ 	@foreach($rows as $row)
+               <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+                  <div class="sport_product">
+                     <figure><a href = ''><img src="{{$row->image}}" alt="img"/></a></figure>
+                    <h3> Rs.<strong class="price_text">{{$row->price}}</strong></h3>
+                     <h4><a href = ''>{{$row->name}}</a></h4>
+                  </div>
+               </div>
+    @endforeach
